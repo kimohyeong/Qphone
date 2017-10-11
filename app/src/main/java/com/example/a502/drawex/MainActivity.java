@@ -16,6 +16,8 @@ import android.view.MenuItem;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
+    private BackPressCloseHandler backPressCloseHandler;
+
     private DrawerLayout mDrawerLayout;
 
     @Override
@@ -23,14 +25,16 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        Intent intent = new Intent(this, loading.class);
+        startActivity(intent);
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         ActionBar actionBar = getSupportActionBar();
         actionBar.setHomeAsUpIndicator(R.drawable.ic_menu);
         actionBar.setDisplayHomeAsUpEnabled(true);
 
-       // a a1;
-        //a1=(a)getSupportFragmentManager().findFragmentById(R.id.frame);
+        backPressCloseHandler = new BackPressCloseHandler(this);
 
 
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -107,6 +111,10 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    @Override public void onBackPressed()
+    {
+        backPressCloseHandler.onBackPressed();
+    }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
