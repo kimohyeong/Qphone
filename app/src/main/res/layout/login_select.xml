@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:background="#fda69d">
+
+    <Button
+        android:layout_width="150dp"
+        android:layout_height="200dp"
+        android:text="일반"
+        android:id="@+id/memberCheck"
+        android:textSize="30dp"
+        android:background="@drawable/button"
+        android:layout_margin="5dp"
+        android:onClick="onClick"
+        />
+    <Button
+        android:layout_width="150dp"
+        android:layout_height="200dp"
+        android:text="가게"
+        android:id="@+id/storeCheck"
+        android:layout_toRightOf="@+id/memberCheck"
+        android:textSize="30dp"
+        android:background="@drawable/button"
+        android:layout_margin="5dp"
+        android:onClick="onClick"/>
+
+</RelativeLayout>
