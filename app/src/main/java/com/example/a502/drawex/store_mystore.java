@@ -69,20 +69,15 @@ public class store_mystore extends Fragment {
         //activity.setSupportActionBar(toolbar);
         //activity.getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-
-        checkPermission();  //접근 허용
-
-
-
         sw=(Switch)rootView.findViewById(R.id.openClose);
         sw.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
                 if(b==true){
-                    sw.setText("OPEN");
+                    sw.setText("가게열림");
                 }
                 else{
-                    sw.setText("CLOSE");
+                    sw.setText("가게 닫힘");
                 }
                 Toast.makeText( activity, "가게: " + b, Toast.LENGTH_SHORT).show();
             }
@@ -93,20 +88,7 @@ public class store_mystore extends Fragment {
         Button button = (Button) rootView.findViewById(R.id.pic_btn);
         button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-
-                Intent intent = new Intent(Intent.ACTION_PICK);
-
-                File tempFile = new File(Environment.getExternalStorageDirectory() + "/temp.jpg");
-                Uri tempUri = Uri.fromFile(tempFile);
-
-                intent.putExtra("crop", "true");
-                intent.putExtra(MediaStore.EXTRA_OUTPUT, tempUri);
-
-                intent.setType("image/*");
-
-                intent.setType(android.provider.MediaStore.Images.Media.CONTENT_TYPE);
-                intent.setData(android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-                startActivityForResult(intent, REQ_CODE_SELECT_IMAGE);
+                checkPermission();  //접근 허용
 
             }
         });
@@ -115,6 +97,21 @@ public class store_mystore extends Fragment {
         return rootView;
     }
 
+    public void getPhoto(){
+        Intent intent = new Intent(Intent.ACTION_PICK);
+
+        File tempFile = new File(Environment.getExternalStorageDirectory() + "/temp.jpg");
+        Uri tempUri = Uri.fromFile(tempFile);
+
+        intent.putExtra("crop", "true");
+        intent.putExtra(MediaStore.EXTRA_OUTPUT, tempUri);
+
+        intent.setType("image/*");
+
+        intent.setType(android.provider.MediaStore.Images.Media.CONTENT_TYPE);
+        intent.setData(android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+        startActivityForResult(intent, REQ_CODE_SELECT_IMAGE);
+    }
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -166,11 +163,13 @@ public class store_mystore extends Fragment {
             requestPermissions(new String[]{android.Manifest.permission.READ_EXTERNAL_STORAGE},
                     MY_PERMISSIONS_REQUEST_READ_CONTACTS);
 
+            getPhoto();
             // MY_PERMISSION_REQUEST_STORAGE is an
             // app-defined int constant
 
         } else {
             // 다음 부분은 항상 허용일 경우에 해당이 됩니다.
+            getPhoto();
 
         }
     }
