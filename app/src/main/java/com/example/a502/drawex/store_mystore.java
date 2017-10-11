@@ -74,7 +74,7 @@ public class store_mystore extends Fragment {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
                 if(b==true){
-                    sw.setText("가게열림");
+                    sw.setText("가게 열림");
                 }
                 else{
                     sw.setText("가게 닫힘");
