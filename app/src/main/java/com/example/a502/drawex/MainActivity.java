@@ -46,13 +46,13 @@ public class MainActivity extends AppCompatActivity {
                 switch (id) {
                     case R.id.navigation_item_login:
                         Toast.makeText(MainActivity.this, menuItem.getTitle(), Toast.LENGTH_LONG).show();
-                        login l=new login();
+                        login_select l=new login_select();
                         getSupportFragmentManager().beginTransaction().replace(R.id.frame, l).commit();
                         break;
 
                     case R.id.navigation_item_register:
                         Toast.makeText(MainActivity.this, menuItem.getTitle(), Toast.LENGTH_LONG).show();
-                        register r=new register();
+                        register_select r=new register_select();
                         getSupportFragmentManager().beginTransaction().replace(R.id.frame, r).commit();
                         break;
 
