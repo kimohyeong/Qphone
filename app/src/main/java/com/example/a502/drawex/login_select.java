@@ -36,8 +36,8 @@ public class login_select extends Fragment {
         switch (v.getId()){
             case R.id.memberCheck:
                 Toast.makeText(activity, "회원", Toast.LENGTH_LONG).show();
-                login l=new login();
-                activity.getSupportFragmentManager().beginTransaction().replace(R.id.frame, l).commit();
+               // login l=new login();
+               // getFragmentManager().beginTransaction().replace(R.id.frame, l).commit();
                 break;
             case R.id.storeCheck:
                 Toast.makeText(activity, "가게", Toast.LENGTH_LONG).show();
