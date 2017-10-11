@@ -35,6 +35,9 @@ public class register_select extends Fragment {
             public void onClick(View view) {
                 Toast.makeText(activity, "일반 회원가입", Toast.LENGTH_LONG).show();
                 register r =new register();
+                Bundle bundle = new Bundle();
+                bundle.putInt("check",1);
+                r.setArguments(bundle);
                 activity.getSupportFragmentManager().beginTransaction().replace(R.id.frame, r).commit();
 
             }
@@ -45,6 +48,9 @@ public class register_select extends Fragment {
             public void onClick(View view) {
                 Toast.makeText(activity, "가게회원가입", Toast.LENGTH_LONG).show();
                 register r =new register();
+                Bundle bundle = new Bundle();
+                bundle.putInt("check",2);
+                r.setArguments(bundle);
                 activity.getSupportFragmentManager().beginTransaction().replace(R.id.frame, r).commit();
 
             }

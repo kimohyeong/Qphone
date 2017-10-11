@@ -62,7 +62,7 @@ public class login extends Fragment {
         pwTxt.setInputType(InputType.TYPE_TEXT_VARIATION_PASSWORD);
         pwTxt.setTransformationMethod(PasswordTransformationMethod.getInstance());
 
-        //비밀번호 누르고 로그인버트안눌러두 되게게
+        //비밀번호 누르고 로그인버트안눌러두 되게
         pwTxt.setImeOptions(EditorInfo.IME_ACTION_DONE);
         pwTxt.setOnEditorActionListener(new TextView.OnEditorActionListener()
         {
@@ -78,6 +78,14 @@ public class login extends Fragment {
         });
 
         navigationView=(NavigationView)activity.findViewById(R.id.navigation_view);
+
+        //번들로 넘어오는부분 ★★★★★★★★★★저어어엉고오오오으으으은 이부분임!!!!!
+        Bundle bundle = this.getArguments();
+        if (bundle != null) {
+            int i = bundle.getInt("check");
+            idTxt.setText(i+"");
+            pwTxt.setText(i+"");
+        }
 
 
 
@@ -116,7 +124,7 @@ public class login extends Fragment {
 
         registerTxt.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                register r=new register();
+                register_select r=new register_select();
                 activity.getSupportFragmentManager().beginTransaction().replace(R.id.frame, r).commit();
 
             }

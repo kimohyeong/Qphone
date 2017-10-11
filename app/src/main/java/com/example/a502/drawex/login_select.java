@@ -38,6 +38,9 @@ public class login_select extends Fragment {
             public void onClick(View v) {
                 Toast.makeText(activity, "회원", Toast.LENGTH_LONG).show();
                 login l =new login();
+                Bundle bundle = new Bundle();
+                bundle.putInt("check",1);
+                l.setArguments(bundle);
                 activity.getSupportFragmentManager().beginTransaction().replace(R.id.frame, l).commit();
 
 
@@ -46,8 +49,11 @@ public class login_select extends Fragment {
         storeBtn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Toast.makeText(activity, "가게", Toast.LENGTH_LONG).show();
-                login l2 =new login();
-                activity.getSupportFragmentManager().beginTransaction().replace(R.id.frame, l2).commit();
+                login l =new login();
+                Bundle bundle = new Bundle();
+                bundle.putInt("check",2);
+                l.setArguments(bundle);
+                activity.getSupportFragmentManager().beginTransaction().replace(R.id.frame, l).commit();
 
 
             }
