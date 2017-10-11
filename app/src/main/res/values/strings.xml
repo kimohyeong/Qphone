@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Q-phone</string>
+    <string name="app_name">QPhone</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
     <string name="nav_item_login">로그인</string>
