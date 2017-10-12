@@ -55,6 +55,7 @@ public class store_custom3 extends AppCompatActivity {
                 Intent intent=new Intent(getApplicationContext(),store_custom4.class);
                 intent.putExtras(bundle);
                 startActivity(intent);
+                finish();
             }
         });
     }
