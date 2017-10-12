@@ -99,15 +99,15 @@ public class MainActivity extends AppCompatActivity {
                         getSupportFragmentManager().beginTransaction().replace(R.id.frame, sr).commit();
                         break;
 
-
-
-
-
                 }
 
                 return true;
             }
         });
+
+        login_select l=new login_select();
+        getSupportFragmentManager().beginTransaction().replace(R.id.frame, l).commit();
+
 
     }
 
