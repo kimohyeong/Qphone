@@ -57,6 +57,7 @@ public class store_custom2 extends AppCompatActivity {
                 bundle.putInt("lineCol",maker.getLinePaint().getColor());
                 intent.putExtras(bundle);
                 startActivity(intent);
+                finish();
             }
         });
     }
