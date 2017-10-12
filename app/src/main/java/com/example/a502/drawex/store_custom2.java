@@ -1,161 +1,115 @@
 package com.example.a502.drawex;
 
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.graphics.Paint;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.SeekBar;
-import android.widget.TextView;
-import android.widget.Toast;
 
 public class store_custom2 extends AppCompatActivity {
-    CouponView couponView;
     CouponMaker maker;
-    Bundle bundle;
-    int height;
-    int width;
-
-    TextView stamp;
-    TextView rowTv;
-    int stampNum=10;
-    int rowNum=5;
-    boolean vertical=false;
-
+    CouponView couponView;
+    SeekBar[] backSeekBars;
+    SeekBar[] insideSeekBars;
+    SeekBar[] dashSeekBars;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_store_custom2);
 
-        Intent intent= getIntent();
-        bundle=intent.getExtras();
-
-        //쿠폰 뷰 설정
         couponView=(CouponView)findViewById(R.id.couponView);
         maker=new CouponMaker(couponView);
-        maker.setRound(bundle.getBoolean("round"));
-        maker.setCouponCol(bundle.getInt("color"));
-        maker.setPhoto(bundle.getBoolean("photo"));
-        maker.setStampBefore(BitmapFactory.decodeResource(this.getResources(), R.drawable.default_stamp1));
-        maker.setStampAfter(BitmapFactory.decodeResource(this.getResources(),R.drawable.default_stamp2));
-        if(maker.getPhoto())
-            maker.setBackgroundImage((Bitmap) bundle.getParcelable("bitmap"));
-        maker.setNumOfRow(rowNum);
-        maker.setNumOfStamp(stampNum);
         couponView.setMaker(maker);
 
-        ///////////////////////////
-        maker.setUserStamp(3);
-        ///////////////////////////
+        //Background SeekBar setting
+        backSeekBars = new SeekBar[3];
+        backSeekBars[0] = (SeekBar) findViewById(R.id.sb_r_b);
+        backSeekBars[1] = (SeekBar) findViewById(R.id.sb_g_b);
+        backSeekBars[2] = (SeekBar) findViewById(R.id.sb_b_b);
+        settingSeekListener(backSeekBars,0);
 
-        //stampNum 설정
-        stamp=(TextView)findViewById(R.id.stampNum);
-        rowTv=(TextView)findViewById(R.id.rowNum);
+        //Inside SeekBar setting
+        insideSeekBars = new SeekBar[3];
+        insideSeekBars[0] = (SeekBar) findViewById(R.id.sb_r_i);
+        insideSeekBars[1] = (SeekBar) findViewById(R.id.sb_g_i);
+        insideSeekBars[2] = (SeekBar) findViewById(R.id.sb_b_i);
+        settingSeekListener(insideSeekBars,1);
 
-        //seekBar 조절하기
-        ((SeekBar)findViewById(R.id.sb_alpha)).setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-            @Override
-            public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
-                int alpha=seekBar.getProgress();
-                Paint circlePaint=maker.getCirclePaint();
-                circlePaint.setAlpha(alpha);
-                maker.setCirclePaint(circlePaint);
-                maker.execute();
-            }
+        //dash line SeekBar setting
+        dashSeekBars = new SeekBar[3];
+        dashSeekBars[0] = (SeekBar) findViewById(R.id.sb_r_d);
+        dashSeekBars[1] = (SeekBar) findViewById(R.id.sb_g_d);
+        dashSeekBars[2] = (SeekBar) findViewById(R.id.sb_b_d);
+        settingSeekListener(dashSeekBars,2);
 
-            @Override
-            public void onStartTrackingTouch(SeekBar seekBar) {
-
-            }
-
-            @Override
-            public void onStopTrackingTouch(SeekBar seekBar) {
-
-            }
-        });
-
-        //다음화면으로 넘김
+        //next 버튼 클릭 리스너(액티비티 전환)
+        //step1에서 결정 된 사항: 배경색, 안쪽색, 점선색
         findViewById(R.id.btn_next).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent=new Intent(getApplicationContext(),store_custom3.class);
                 Bundle bundle=new Bundle();
-                bundle.putBoolean("round",maker.getRound());
-                bundle.putInt("color",maker.getCouponCol().getColor());
-                bundle.putBoolean("photo",maker.getPhoto());
-                bundle.putBoolean("vertical",vertical);
-                if(maker.getPhoto())
-                    bundle.putParcelable("bitmap",maker.getBackgroundImage());
-                bundle.putInt("totalNum",maker.getNumOfStamp());
-                bundle.putInt("rowNum",maker.getNumOfRow());
-                bundle.putInt("alpha",maker.getCirclePaint().getAlpha());
+                bundle.putInt("backCol",maker.getBackPaint().getColor());
+                bundle.putInt("inCol",maker.getInsidePaint().getColor());
+                bundle.putInt("lineCol",maker.getLinePaint().getColor());
                 intent.putExtras(bundle);
                 startActivity(intent);
-                finish();
             }
         });
     }
 
     @Override
     public void onWindowFocusChanged(boolean hasFocus) {
-        super.onWindowFocusChanged(hasFocus);
-        height=couponView.getHeight();
-        width=couponView.getWidth();
-        if(vertical=bundle.getBoolean("vertical"))
-        {
-            ViewGroup.LayoutParams params=couponView.getLayoutParams();
-            params.width=(int)(height*1.15);
-            params.height=width;
-            couponView.setLayoutParams(params);
-        }
+        //super.onWindowFocusChanged(hasFocus);
+        int width = couponView.getWidth();
+        int height = (int) (width * 2 / 3.0);
+        ViewGroup.LayoutParams params = couponView.getLayoutParams();
+        params.height = height;
+        couponView.setLayoutParams(params);
     }
 
-    @Override
-    public void onBackPressed() {
 
-    }
-
-    public void numberUpDown(View view)
+    public void settingSeekListener(final SeekBar[] seekBars, int type)
     {
-        switch (view.getId())
-        {
-            case R.id.btnUp:
-                stampNum++;
-                stamp.setText(stampNum+"");
-                break;
-            case R.id.btnDown:
-                if(stampNum==1)
-                {
-                    Toast.makeText(this,"적어도 1 이상이어야 합니다.",Toast.LENGTH_SHORT).show();
-                    return;
+        final int t=type;
+        for(int i=0; i<seekBars.length; i++)
+            seekBars[i].setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+                @Override
+                public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
+                    Paint temp;
+                    switch (t)
+                    {
+                        case 0:
+                            temp=maker.getBackPaint();
+                            temp.setColor(Color.rgb(seekBars[0].getProgress(),seekBars[1].getProgress(),seekBars[2].getProgress()));
+                            maker.setBackPaint(temp);
+                            break;
+                        case 1:
+                            temp=maker.getInsidePaint();
+                            temp.setColor(Color.rgb(seekBars[0].getProgress(),seekBars[1].getProgress(),seekBars[2].getProgress()));
+                            maker.setInsidePaint(temp);
+                            break;
+                        case 2:
+                            temp=maker.getLinePaint();
+                            temp.setColor(Color.rgb(seekBars[0].getProgress(),seekBars[1].getProgress(),seekBars[2].getProgress()));
+                            maker.setLinePaint(temp);
+                            break;
+                    }
+                    maker.execute();
                 }
-                stampNum--;
-                stamp.setText(stampNum+"");
-                break;
-            case R.id.btnRowUp:
-                if(rowNum>=stampNum)
-                {
-                    Toast.makeText(this,"총 개수를 초과합니다.",Toast.LENGTH_SHORT).show();
-                    return;
+
+                @Override
+                public void onStartTrackingTouch(SeekBar seekBar) {
+
                 }
-                rowNum++;
-                rowTv.setText(rowNum+"");
-                break;
-            case R.id.btnRowDown:
-                if(rowNum==1)
-                {
-                    Toast.makeText(this,"적어도 1 이상이어야 합니다.",Toast.LENGTH_SHORT).show();
-                    return;
+
+                @Override
+                public void onStopTrackingTouch(SeekBar seekBar) {
+
                 }
-                rowNum--;
-                rowTv.setText(rowNum+"");
-                break;
-        }
-        maker.setNumOfStamp(stampNum);
-        maker.setNumOfRow(rowNum);
-        maker.execute();
+            });
     }
 }

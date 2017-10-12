@@ -15,4 +15,6 @@
     <color name="pastelBlue">#c4c9f1</color>
     <color name="pastelViolet">#e1b2e8</color>
     <color name="pastelBrown">#d8c5a8</color>
+
+    <color name="mainColor">#fda69d</color>
 </resources>
