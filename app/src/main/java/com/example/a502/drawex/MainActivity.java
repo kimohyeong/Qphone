@@ -62,8 +62,8 @@ public class MainActivity extends AppCompatActivity {
 
                     case R.id.navigation_item_home:
                         Toast.makeText(MainActivity.this, menuItem.getTitle(), Toast.LENGTH_LONG).show();
-                        //login l=new login();
-                        //getSupportFragmentManager().beginTransaction().replace(R.id.frame, l).commit();
+                        normal_home n=new normal_home();
+                        getSupportFragmentManager().beginTransaction().replace(R.id.frame, n).commit();
                         break;
 
                     case R.id.navigation_item_setting:

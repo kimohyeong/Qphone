@@ -97,6 +97,11 @@ public class login extends Fragment {
                     navigationView.getMenu().setGroupVisible(R.id.noLogin,false);
                     navigationView.getMenu().setGroupVisible(R.id.after_login_store,false);
                     navigationView.getMenu().setGroupVisible(R.id.after_login_normal,true);
+
+                    normal_home n=new normal_home();
+                    activity.getSupportFragmentManager().beginTransaction().replace(R.id.frame, n).commit();
+
+
                 }
                 if( idTxt.getText().toString().equals("2") && pwTxt.getText().toString().equals("2"))   //r관리자 로그인 성공시
                 {

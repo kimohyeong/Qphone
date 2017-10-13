@@ -5,5 +5,11 @@
     android:layout_margin="20dp"
     >
 
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/couponList"
+        android:divider="#00000000" ></ListView>
+
 
 </RelativeLayout>
