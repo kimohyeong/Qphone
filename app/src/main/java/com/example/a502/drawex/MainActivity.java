@@ -1,5 +1,6 @@
 package com.example.a502.drawex;
 
+import android.content.SharedPreferences;
 import android.support.v4.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
@@ -20,10 +21,20 @@ public class MainActivity extends AppCompatActivity {
 
     private DrawerLayout mDrawerLayout;
 
+    //자동로그인 기능
+    private SharedPreferences appData;
+    private boolean saveLoginData;
+    private String id;
+    private String pw;
+    private int login_type;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        appData=getSharedPreferences("appData",MODE_PRIVATE);
+        load();
 
         Intent intent = new Intent(this, loading.class);
         startActivity(intent);
@@ -74,6 +85,9 @@ public class MainActivity extends AppCompatActivity {
                     case R.id.navigation_item_logout:
                         Toast.makeText(MainActivity.this, menuItem.getTitle(), Toast.LENGTH_LONG).show();
                         login l2=new login();
+                        SharedPreferences.Editor editor=appData.edit();
+                        editor.clear();
+                        editor.commit();
                         getSupportFragmentManager().beginTransaction().replace(R.id.frame, l2).commit();
                         break;
 
@@ -105,10 +119,15 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        //기본화면으로 로그인 select 띄우기
         login_select l=new login_select();
+        Bundle bundle =new Bundle();
+        bundle.putBoolean("bLogin",saveLoginData);
+        bundle.putString("ID",id);
+        bundle.putString("PW",pw);
+        bundle.putInt("type",login_type);
+        l.setArguments(bundle);
         getSupportFragmentManager().beginTransaction().replace(R.id.frame, l).commit();
-
-
     }
 
     @Override public void onBackPressed()
@@ -132,5 +151,21 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public static SharedPreferences getSharedPreference()
+    {
+        MainActivity main=new MainActivity();
+        return main.getSharedPreferences("appData",MODE_PRIVATE);
+    }
+    private void load()
+    {
+        //SharedPreferences 객체에 저장된 이름, 기본값)
+        //저장된 이름이 존재하지 않을 경우 기본값
+
+        saveLoginData=appData.getBoolean("SAVE_LOGIN_DATA",false);
+        id=appData.getString("ID","");
+        pw=appData.getString("PW","");
+        login_type=appData.getInt("type",0);
     }
 }

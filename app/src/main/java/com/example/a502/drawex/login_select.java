@@ -1,6 +1,7 @@
 package com.example.a502.drawex;
 
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -31,6 +32,20 @@ public class login_select extends Fragment {
 
         activity = (AppCompatActivity) getActivity();
 
+        Bundle bundle=getArguments();
+
+        //로그인 기록이 남아 있는 경우
+        if(bundle.getBoolean("bLogin",false)&&bundle.getInt("type")!=0)
+        {
+            login l =new login();
+            Bundle args = new Bundle();
+            args.putBoolean("bLogin",true);
+            args.putInt("check",bundle.getInt("type"));
+            args.putString("ID",bundle.getString("ID"));
+            args.putString("PW",bundle.getString("PW"));
+            l.setArguments(args);
+            activity.getSupportFragmentManager().beginTransaction().replace(R.id.frame, l).commit();
+        }
         memberBtn=(Button)rootView.findViewById(R.id.memberCheck);
         storeBtn=(Button)rootView.findViewById(R.id.storeCheck);
 
@@ -42,8 +57,6 @@ public class login_select extends Fragment {
                 bundle.putInt("check",1);
                 l.setArguments(bundle);
                 activity.getSupportFragmentManager().beginTransaction().replace(R.id.frame, l).commit();
-
-
             }
         });
         storeBtn.setOnClickListener(new View.OnClickListener() {

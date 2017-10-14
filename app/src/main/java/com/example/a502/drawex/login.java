@@ -1,7 +1,9 @@
 package com.example.a502.drawex;
 
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
@@ -43,6 +45,9 @@ public class login extends Fragment {
 
     AppCompatActivity activity;
 
+    SharedPreferences appData;
+    SharedPreferences.Editor editor;
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -56,6 +61,8 @@ public class login extends Fragment {
         loginBtn = (Button) rootView.findViewById(R.id.loginBtn);
 
         activity = (AppCompatActivity) getActivity();
+
+        appData=activity.getSharedPreferences("appData", Context.MODE_PRIVATE);
 
 
         //비밀번호 입력시 *로 뜨게
@@ -85,8 +92,28 @@ public class login extends Fragment {
             int i = bundle.getInt("check");
             idTxt.setText(i+"");
             pwTxt.setText(i+"");
-        }
 
+            if(bundle.getBoolean("bLogin",false))
+            {
+                Log.i("login","로그인 기록 있음");
+                if(appData.getInt("type",0)==1)     //일반회원으로 로그인했음
+                {
+                    navigationView.getMenu().setGroupVisible(R.id.noLogin,false);
+                    navigationView.getMenu().setGroupVisible(R.id.after_login_store,false);
+                    navigationView.getMenu().setGroupVisible(R.id.after_login_normal,true);
+
+                    normal_home n=new normal_home();
+                    activity.getSupportFragmentManager().beginTransaction().replace(R.id.frame, n).commit();
+                }
+                else        //가게로 로그인 했음
+                {
+                    Log.e("log1","store login");
+                    navigationView.getMenu().setGroupVisible(R.id.noLogin,false);
+                    navigationView.getMenu().setGroupVisible(R.id.after_login_normal,false);
+                    navigationView.getMenu().setGroupVisible(R.id.after_login_store,true);
+                }
+            }
+        }
 
 
         loginBtn.setOnClickListener(new View.OnClickListener() {
@@ -101,7 +128,12 @@ public class login extends Fragment {
                     normal_home n=new normal_home();
                     activity.getSupportFragmentManager().beginTransaction().replace(R.id.frame, n).commit();
 
-
+                    editor=appData.edit();
+                    editor.putBoolean("SAVE_LOGIN_DATA",true);
+                    editor.putString("ID",idTxt.getText().toString());
+                    editor.putString("PW",pwTxt.getText().toString());
+                    editor.putInt("type",1);
+                    editor.apply();
                 }
                 if( idTxt.getText().toString().equals("2") && pwTxt.getText().toString().equals("2"))   //r관리자 로그인 성공시
                 {
@@ -109,6 +141,13 @@ public class login extends Fragment {
                     navigationView.getMenu().setGroupVisible(R.id.noLogin,false);
                     navigationView.getMenu().setGroupVisible(R.id.after_login_normal,false);
                     navigationView.getMenu().setGroupVisible(R.id.after_login_store,true);
+
+                    editor=appData.edit();
+                    editor.putBoolean("SAVE_LOGIN_DATA",true);
+                    editor.putString("ID",idTxt.getText().toString());
+                    editor.putString("PW",pwTxt.getText().toString());
+                    editor.putInt("type",2);
+                    editor.apply();
                 }
 
             }
