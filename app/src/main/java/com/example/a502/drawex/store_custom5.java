@@ -5,7 +5,10 @@ import android.graphics.BitmapFactory;
 import android.graphics.Paint;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 import android.view.ViewGroup;
+
+import java.util.ArrayList;
 
 public class store_custom5 extends AppCompatActivity {
     CouponView couponView;
@@ -25,6 +28,36 @@ public class store_custom5 extends AppCompatActivity {
         bundle=intent.getExtras();
 
         setPresetting();
+
+        findViewById(R.id.btn_save).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //데이터베이스에 값을 저장하는 부분.
+                int back=bundle.getInt("backCol");
+                int in=bundle.getInt("inCol");
+                int line=bundle.getInt("lineCol");
+                int stampNum=bundle.getInt("stampNum");
+                int colNum=bundle.getInt("colNum");
+                String str=bundle.getString("str");
+                String events="";
+                boolean[] eventArray=bundle.getBooleanArray("events");
+                for(int i=0;i<eventArray.length;i++)
+                {
+                    if(eventArray[i])
+                        events+="T";
+                    else
+                        events+="F";
+                }
+
+                ////////////여기에 쿼리 추가!!!!///////
+                /*
+                * Insert into coupon_image (shop_code, inside_color, background_color, line_color,
+                * total_stamp, column_stamp, event_array, event_string) values
+                  (shop_id, in, back, line,stampNum,colNum, events, str)
+                * */
+                finish();
+            }
+        });
     }
     @Override
     public void onWindowFocusChanged(boolean hasFocus) {
