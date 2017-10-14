@@ -23,7 +23,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".normal_home" />
 
         <activity android:name=".store_home" />
         <activity android:name=".store_custom1"/>
@@ -38,6 +37,8 @@
         </activity>
 
         <service android:name=".GeofenceTransitionsIntentService" />
+
+        <activity android:name=".couponlist_click"/>
     </application>
 
 </manifest>

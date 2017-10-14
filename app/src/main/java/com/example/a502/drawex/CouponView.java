@@ -17,7 +17,8 @@ import android.view.View;
  * Created by soo on 2017-09-23.
  */
 
-public class CouponView extends View {
+public class
+CouponView extends View {
     private TypedArray types;
     private Context mCotext;
 

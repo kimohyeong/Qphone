@@ -5,10 +5,30 @@
     android:layout_margin="20dp"
     >
 
+    <Spinner
+        android:id="@+id/listOrmap"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:gravity="right"
+        android:layout_marginBottom="10dp"
+        android:layout_marginRight="10dp"
+        ></Spinner>
+
+    <Spinner
+        android:id="@+id/sort"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:gravity="right"
+        android:layout_toRightOf="@id/listOrmap"
+        android:layout_marginBottom="20dp"
+        ></Spinner>
+
+
     <ListView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:id="@+id/couponList"
+        android:layout_below="@id/listOrmap"
         android:divider="#00000000" ></ListView>
 
 
