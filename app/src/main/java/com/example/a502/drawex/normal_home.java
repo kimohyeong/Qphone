@@ -30,18 +30,18 @@ public class normal_home extends Fragment {
         activity=(AppCompatActivity)getActivity();
 
         ListView listview ;
-        //couponlist_adpater adapter;
+        couponlist_adpater adapter;
 
         // Adapter 생성
-        //adapter = new couponlist_adpater() ;
+         adapter = new couponlist_adpater() ;
 
         // 리스트뷰 참조 및 Adapter달기
         listview = (ListView)rootView.findViewById(R.id.couponList);
-        //listview.setAdapter(adapter);
+        listview.setAdapter(adapter);
 
-        //adapter.addItem("베르데",2,10);
-        //adapter.addItem("베니스의 상인", 4,14);
-       // adapter.addItem("크리스마스자몽", 3, 5);
+        adapter.addItem("베르데",2,10);
+        adapter.addItem("베니스의 상인", 4,14);
+        adapter.addItem("크리스마스자몽", 3, 5);
 
         return rootView;
     }
