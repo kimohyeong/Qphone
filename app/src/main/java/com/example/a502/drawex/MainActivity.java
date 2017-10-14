@@ -164,6 +164,8 @@ public class MainActivity extends AppCompatActivity implements OnCompleteListene
         bundle.putInt("type",login_type);
         l.setArguments(bundle);
         getSupportFragmentManager().beginTransaction().replace(R.id.frame, l).commit();
+
+        addGeofences();
     }
 
     @Override
