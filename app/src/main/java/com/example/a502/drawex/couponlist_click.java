@@ -13,6 +13,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
 /**
  * Created by 502 on 2017-10-14.
@@ -97,4 +98,12 @@ public class couponlist_click extends AppCompatActivity {
         maker.setEventAfter(BitmapFactory.decodeResource(this.getResources(),R.drawable.default_event2));
 
     }
+
+    public void onClick(View v)
+    {
+        Intent i= new Intent(this, normal_notice.class);
+        startActivity(i);
+
+    }
+
 }

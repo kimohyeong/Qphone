@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -26,6 +27,7 @@ public class store_notice_click extends Fragment {
     TextView contentText;
     ViewGroup rootView;
 
+    AppCompatActivity activity;
     Bundle bundle;
 
     @Nullable
@@ -37,6 +39,9 @@ public class store_notice_click extends Fragment {
         contentEdit=rootView.findViewById(R.id.contentEdit);
         titleText=rootView.findViewById(R.id.titleText);
         contentText=rootView.findViewById(R.id.contentText);
+
+        activity=(AppCompatActivity)getActivity();
+        activity.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
 
         bundle = this.getArguments();
         if(bundle!= null){

@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -22,6 +23,8 @@ public class store_custom4 extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_store_custom4);
+
+        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
 
         couponView=(CouponView)findViewById(R.id.couponView);
         maker=new CouponMaker(couponView);
@@ -84,6 +87,7 @@ public class store_custom4 extends AppCompatActivity {
                 Intent intent=new Intent(getApplicationContext(),store_custom5.class);
                 intent.putExtras(bundle);
                 startActivity(intent);
+                finish();
             }
         });
     }
