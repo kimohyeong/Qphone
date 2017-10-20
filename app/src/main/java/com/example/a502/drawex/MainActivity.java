@@ -113,11 +113,7 @@ public class MainActivity extends AppCompatActivity implements OnCompleteListene
                         getSupportFragmentManager().beginTransaction().replace(R.id.frame, n).commit();
                         break;
 
-                    case R.id.navigation_item_setting:
-                        Toast.makeText(MainActivity.this, menuItem.getTitle(), Toast.LENGTH_LONG).show();
-                       // login l=new login();
-                       // getSupportFragmentManager().beginTransaction().replace(R.id.frame, l).commit();
-                        break;
+
                     case R.id.navigation_item_logout:
                         Toast.makeText(MainActivity.this, menuItem.getTitle(), Toast.LENGTH_LONG).show();
                         login l2=new login();
@@ -146,11 +142,7 @@ public class MainActivity extends AppCompatActivity implements OnCompleteListene
                         store_notice sn=new store_notice();
                         getSupportFragmentManager().beginTransaction().replace(R.id.frame, sn).commit();
                         break;
-                    case R.id.navigation_item_store_register:
-                        Toast.makeText(MainActivity.this, menuItem.getTitle(), Toast.LENGTH_LONG).show();
-                        store_register sr=new store_register();
-                        getSupportFragmentManager().beginTransaction().replace(R.id.frame, sr).commit();
-                        break;
+
                     case R.id.navigation_item_consumers:
                         Toast.makeText(MainActivity.this, menuItem.getTitle(), Toast.LENGTH_LONG).show();
                         store_consumers sc=new store_consumers();

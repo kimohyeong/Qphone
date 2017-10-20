@@ -103,26 +103,34 @@ public class login extends Fragment {
                 idTxt.setText(i+"");
                 pwTxt.setText(i+"");
 
-                if(bundle.getBoolean("bLogin",false))
-                {
-                    Log.i("login","로그인 기록 있음");
-                    if(appData.getInt("type",0)==1)     //일반회원으로 로그인했음
+                try{
+                    if(bundle.getBoolean("bLogin",false))
                     {
-                        navigationView.getMenu().setGroupVisible(R.id.noLogin,false);
-                        navigationView.getMenu().setGroupVisible(R.id.after_login_store,false);
-                        navigationView.getMenu().setGroupVisible(R.id.after_login_normal,true);
+                        Log.i("login","로그인 기록 있음");
+                        if(appData.getInt("type",0)==1)     //일반회원으로 로그인했음
+                        {
+                            navigationView.getMenu().setGroupVisible(R.id.noLogin,false);
+                            navigationView.getMenu().setGroupVisible(R.id.after_login_store,false);
+                            navigationView.getMenu().setGroupVisible(R.id.after_login_normal,true);
 
-                        normal_home n=new normal_home();
-                        activity.getSupportFragmentManager().beginTransaction().replace(R.id.frame, n).commit();
-                    }
-                    else        //가게로 로그인 했음
-                    {
-                        Log.e("log1","store login");
-                        navigationView.getMenu().setGroupVisible(R.id.noLogin,false);
-                        navigationView.getMenu().setGroupVisible(R.id.after_login_normal,false);
-                        navigationView.getMenu().setGroupVisible(R.id.after_login_store,true);
+                            normal_home n=new normal_home();
+                            activity.getSupportFragmentManager().beginTransaction().replace(R.id.frame, n).commit();
+                        }
+                        else        //가게로 로그인 했음
+                        {
+                            Log.e("log1","store login");
+                            navigationView.getMenu().setGroupVisible(R.id.noLogin,false);
+                            navigationView.getMenu().setGroupVisible(R.id.after_login_normal,false);
+                            navigationView.getMenu().setGroupVisible(R.id.after_login_store,true);
+                        }
                     }
                 }
+                catch (Exception e)
+                {
+
+                    Log.e("bLogin", e.getMessage());
+                }
+
             }
 
         }
