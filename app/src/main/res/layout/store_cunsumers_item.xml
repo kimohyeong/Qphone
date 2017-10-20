@@ -41,7 +41,7 @@
     <ImageView
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:background="@drawable/stamp"
+        android:background="@drawable/stamm_gray"
         android:layout_alignParentRight="true"/>
 
 </RelativeLayout>
