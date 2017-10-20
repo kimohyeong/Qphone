@@ -8,6 +8,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ImageView;
 import android.widget.ListView;
 
 /**
@@ -36,6 +38,7 @@ public class store_consumers extends Fragment {
         adapter.addItem("kdhdud15",1);
         adapter.addItem("goeun",0);
         adapter.addItem("soo",2);
+
 
         return rootView;
     }

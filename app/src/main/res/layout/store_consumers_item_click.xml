@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="20dp"
+    android:gravity="center">
+
+    <com.example.a502.drawex.CouponView
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:id="@+id/coupon"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/coupon"
+        android:id="@+id/buttonlayout"
+        android:gravity="center_horizontal"
+        android:layout_marginBottom="30dp"
+        android:layout_marginTop="30dp">
+
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@drawable/Usecoupon"
+            android:id="@+id/usecoupon"
+            android:layout_marginRight="20dp"
+            />
+        <TextView
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:text="쿠폰사용"
+            android:id="@+id/usecouponText"
+            android:layout_below="@id/usecoupon"
+            android:textSize="15dp"
+            android:gravity="center"/>
+
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@drawable/stamm_gray"
+            android:layout_toRightOf="@id/usecoupon"
+            android:id="@+id/stamp"
+            android:layout_marginRight="20dp"/>
+
+        <TextView
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:textSize="15dp"
+            android:text="적립하기"
+            android:layout_below="@id/stamp"
+            android:layout_toRightOf="@id/usecoupon"
+            android:gravity="center"/>
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@drawable/returnImg"
+            android:id="@+id/refresh"
+            android:layout_toRightOf="@id/stamp"/>
+        <TextView
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:textSize="15dp"
+            android:text="되돌리기"
+            android:layout_below="@id/refresh"
+            android:layout_toRightOf="@id/stamp"
+            android:gravity="center"/>
+
+    </RelativeLayout>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="저장하기"
+        android:layout_below="@id/buttonlayout"
+        />
+
+</RelativeLayout>
