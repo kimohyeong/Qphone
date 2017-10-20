@@ -18,7 +18,8 @@ public class store_consumers_item {
     public String getId() {
         return this.consumerId ;
     }
-    public int getHascouponNum() {
+    public int getHascouponNum()
+    {
         return this.hascouponNum ;
     }
 

@@ -15,6 +15,7 @@ import android.widget.ListView;
  */
 
 public class store_consumers extends Fragment {
+
     ViewGroup rootView;
     AppCompatActivity activity;
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
