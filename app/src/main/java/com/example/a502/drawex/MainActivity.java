@@ -148,6 +148,11 @@ public class MainActivity extends AppCompatActivity implements OnCompleteListene
                         store_register sr=new store_register();
                         getSupportFragmentManager().beginTransaction().replace(R.id.frame, sr).commit();
                         break;
+                    case R.id.navigation_item_consumers:
+                        Toast.makeText(MainActivity.this, menuItem.getTitle(), Toast.LENGTH_LONG).show();
+                        store_consumers sc=new store_consumers();
+                        getSupportFragmentManager().beginTransaction().replace(R.id.frame, sc).commit();
+                        break;
 
                 }
 

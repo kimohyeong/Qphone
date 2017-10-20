@@ -36,10 +36,10 @@
         android:id="@+id/after_login_store"
         android:visible="false">
         <item
-            android:id="@id/navigation_item_home"
+            android:id="@+id/navigation_item_consumers"
             android:checked="true"
             android:icon="@drawable/ic_attachment"
-            android:title="홈" />
+            android:title="회원들" />
         <item
             android:id="@id/navigation_item_setting"
             android:icon="@drawable/ic_image"
