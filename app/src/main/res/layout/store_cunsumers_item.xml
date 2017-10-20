@@ -38,6 +38,7 @@
         android:id="@+id/coupon_num"
         android:layout_below="@id/textNim"
         android:textSize="20dp"/>
+
     <ImageView
         android:layout_width="50dp"
         android:layout_height="50dp"
