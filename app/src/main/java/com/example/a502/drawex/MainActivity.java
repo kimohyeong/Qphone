@@ -124,6 +124,9 @@ public class MainActivity extends AppCompatActivity implements OnCompleteListene
                         SharedPreferences.Editor editor=appData.edit();
                         editor.clear();
                         editor.commit();
+                        Bundle bundle = new Bundle();
+                        bundle.putInt("logout",1);
+                        l2.setArguments(bundle);
                         getSupportFragmentManager().beginTransaction().replace(R.id.frame, l2).commit();
                         break;
 

@@ -90,29 +90,41 @@ public class login extends Fragment {
         Bundle bundle = this.getArguments();
         if (bundle != null) {
             int i = bundle.getInt("check");
-            idTxt.setText(i+"");
-            pwTxt.setText(i+"");
-
-            if(bundle.getBoolean("bLogin",false))
+            int checkLogout = bundle.getInt("logout");
+            if(checkLogout==1)
             {
-                Log.i("login","로그인 기록 있음");
-                if(appData.getInt("type",0)==1)     //일반회원으로 로그인했음
-                {
-                    navigationView.getMenu().setGroupVisible(R.id.noLogin,false);
-                    navigationView.getMenu().setGroupVisible(R.id.after_login_store,false);
-                    navigationView.getMenu().setGroupVisible(R.id.after_login_normal,true);
+                navigationView.getMenu().setGroupVisible(R.id.noLogin,true);
+                navigationView.getMenu().setGroupVisible(R.id.after_login_store,false);
+                navigationView.getMenu().setGroupVisible(R.id.after_login_normal,false);
 
-                    normal_home n=new normal_home();
-                    activity.getSupportFragmentManager().beginTransaction().replace(R.id.frame, n).commit();
-                }
-                else        //가게로 로그인 했음
+            }
+            else
+            {
+                idTxt.setText(i+"");
+                pwTxt.setText(i+"");
+
+                if(bundle.getBoolean("bLogin",false))
                 {
-                    Log.e("log1","store login");
-                    navigationView.getMenu().setGroupVisible(R.id.noLogin,false);
-                    navigationView.getMenu().setGroupVisible(R.id.after_login_normal,false);
-                    navigationView.getMenu().setGroupVisible(R.id.after_login_store,true);
+                    Log.i("login","로그인 기록 있음");
+                    if(appData.getInt("type",0)==1)     //일반회원으로 로그인했음
+                    {
+                        navigationView.getMenu().setGroupVisible(R.id.noLogin,false);
+                        navigationView.getMenu().setGroupVisible(R.id.after_login_store,false);
+                        navigationView.getMenu().setGroupVisible(R.id.after_login_normal,true);
+
+                        normal_home n=new normal_home();
+                        activity.getSupportFragmentManager().beginTransaction().replace(R.id.frame, n).commit();
+                    }
+                    else        //가게로 로그인 했음
+                    {
+                        Log.e("log1","store login");
+                        navigationView.getMenu().setGroupVisible(R.id.noLogin,false);
+                        navigationView.getMenu().setGroupVisible(R.id.after_login_normal,false);
+                        navigationView.getMenu().setGroupVisible(R.id.after_login_store,true);
+                    }
                 }
             }
+
         }
 
 
@@ -148,6 +160,10 @@ public class login extends Fragment {
                     editor.putString("PW",pwTxt.getText().toString());
                     editor.putInt("type",2);
                     editor.apply();
+
+                    store_mystore s=new store_mystore();
+                    activity.getSupportFragmentManager().beginTransaction().replace(R.id.frame, s).commit();
+
                 }
 
             }
