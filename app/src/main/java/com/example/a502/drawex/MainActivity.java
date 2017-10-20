@@ -219,7 +219,7 @@ public class MainActivity extends AppCompatActivity implements OnCompleteListene
     @SuppressWarnings("MissingPermission")
     private void addGeofences() {
         if (!checkPermissions()) {
-            Toast.makeText(this,"위치 권한을 찾을 수 없습니다.",Toast.LENGTH_LONG).show();
+            Toast.makeText(this,"GPS기능을 켜주세요.",Toast.LENGTH_LONG).show();
             return;
         }
 
