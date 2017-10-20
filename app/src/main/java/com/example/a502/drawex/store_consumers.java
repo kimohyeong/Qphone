@@ -39,6 +39,26 @@ public class store_consumers extends Fragment {
         adapter.addItem("goeun",0);
         adapter.addItem("soo",2);
 
+        listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView parent, View v, int position, long id) {
+                // get item
+                store_consumers_item item = (store_consumers_item) parent.getItemAtPosition(position) ;
+
+                String consumerId = item.getId() ;
+                int hasCouponNum = item.getHascouponNum() ;
+
+                Bundle bundle = new Bundle();
+                bundle.putString("id",consumerId);
+                bundle.putInt("num",hasCouponNum);
+
+                store_consumers_item_click scc=new store_consumers_item_click();
+                scc.setArguments(bundle);
+                activity.getSupportFragmentManager().beginTransaction().replace(R.id.frame, scc).commit();
+            }
+        }) ;
+
+
 
         return rootView;
     }

@@ -31,6 +31,7 @@
             android:textSize="18dp"
             android:layout_weight="1.5"
             android:text="000"
+            android:id="@+id/storeCode"
             />
     </LinearLayout>
     <RelativeLayout
