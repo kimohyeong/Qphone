@@ -4,6 +4,7 @@ package com.example.a502.drawex;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
@@ -25,16 +26,19 @@ public class login_select extends Fragment {
     Button memberBtn;
     Button storeBtn;
 
+    NavigationView navigationView;
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         rootView = (ViewGroup)inflater.inflate(R.layout.login_select, container, false);
 
         activity = (AppCompatActivity) getActivity();
+        navigationView=(NavigationView)activity.findViewById(R.id.navigation_view);
 
         Bundle bundle=getArguments();
 
         try{
+
             //로그인 기록이 남아 있는 경우
             if(bundle.getBoolean("bLogin",false)&&bundle.getInt("type")!=0)
             {
@@ -47,6 +51,17 @@ public class login_select extends Fragment {
                 l.setArguments(args);
                 activity.getSupportFragmentManager().beginTransaction().replace(R.id.frame, l).commit();
             }
+            if(bundle.getInt("logout")==1){
+                navigationView.getMenu().setGroupVisible(R.id.noLogin,true);
+                navigationView.getMenu().setGroupVisible(R.id.after_login_store,false);
+                navigationView.getMenu().setGroupVisible(R.id.after_login_normal,false);
+
+                login_select l2= new login_select();
+
+                activity.getSupportFragmentManager().beginTransaction().replace(R.id.frame, l2).commit();
+
+            }
+
         }
         catch (Exception e){
             Log.e("bLogin", e.getMessage());

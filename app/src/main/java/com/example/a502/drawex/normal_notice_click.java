@@ -29,9 +29,10 @@ public class normal_notice_click extends AppCompatActivity {
 
         String title=i.getStringExtra("title");
         String content=i.getStringExtra("content");
-
+        String date=i.getStringExtra("date");
         titleText.setText(title);
         contentText.setText(content);
+        contentText.append("\n"+date);
 
 
     }

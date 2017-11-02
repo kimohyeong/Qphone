@@ -20,19 +20,19 @@ public class normal_notice extends AppCompatActivity {
         setContentView(R.layout.normal_notice);
 
         ListView listview ;
-        store_notice_Adapter adapter;
+        normal_notice_adapter adapter;
 
         // Adapter 생성
-        adapter = new store_notice_Adapter() ;
+        adapter = new normal_notice_adapter() ;
 
         // 리스트뷰 참조 및 Adapter달기
         listview = (ListView) findViewById(R.id.listVIew);
         listview.setAdapter(adapter);
 
         // 첫 번째 아이템 추가.
-        adapter.addItem("gaegeaw", "2017.10.01") ;
+        adapter.addItem("공지사항1", "2017.10.01") ;
         // 두 번째 아이템 추가.
-        adapter.addItem("eagawegwg...", "2017.10.02") ;
+        adapter.addItem("공지사항2", "2017.10.02") ;
         // 세 번째 아이템 추가.
         adapter.addItem("aegwewge흠", "2017.10.01") ;
 
@@ -40,14 +40,12 @@ public class normal_notice extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView parent, View v, int position, long id) {
 
-                store_notice_listviewItem item = (store_notice_listviewItem) parent.getItemAtPosition(position) ;
-
-
-                store_notice_click sc=new store_notice_click();
+                normal_notice_item item = (normal_notice_item) parent.getItemAtPosition(position) ;
 
                 Intent i=new Intent(getApplicationContext(), normal_notice_click.class);
                 i.putExtra("title",item.getTitle());
-                i.putExtra("content",item.getDesc());
+                i.putExtra("date",item.getDate());
+                i.putExtra("content","내용내용냉ㅇ");
 
                 startActivity(i);
             }

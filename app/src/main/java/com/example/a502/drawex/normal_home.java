@@ -15,6 +15,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.CompoundButton;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.Switch;
@@ -27,19 +28,17 @@ import android.widget.Toast;
 public class normal_home extends Fragment {
     ViewGroup rootView;
     AppCompatActivity activity;
-    Spinner listormapSp;
-    Spinner sortSp;
     ListView listview;
     couponlist_adpater adapter;
+    ImageView add_store;
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         rootView = (ViewGroup)inflater.inflate(R.layout.normal_home, container, false);
         activity=(AppCompatActivity)getActivity();
 
-        listormapSp=(Spinner)rootView.findViewById(R.id.listOrmap);
-        sortSp=(Spinner)rootView.findViewById(R.id.sort);
 
+        add_store=(ImageView)rootView.findViewById(R.id.registerStore);
         // Adapter 생성
         adapter = new couponlist_adpater() ;
 
@@ -64,32 +63,14 @@ public class normal_home extends Fragment {
             }
         }) ;
 
-
-        ArrayAdapter s = ArrayAdapter.createFromResource(activity, R.array.list, android.R.layout.simple_spinner_dropdown_item);
-        listormapSp.setAdapter(s);
-
-        listormapSp.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        add_store.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                Toast.makeText(activity ,"position : " + position + parent.getItemAtPosition(position), Toast.LENGTH_SHORT).show();
-
+            public void onClick(View view) {
+                Intent i2= new Intent(activity,add_store.class);
+                startActivity(i2);
             }
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {}
         });
 
-        ArrayAdapter s2 = ArrayAdapter.createFromResource(activity, R.array.sort, android.R.layout.simple_spinner_dropdown_item);
-        sortSp.setAdapter(s2);
-
-        sortSp.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                Toast.makeText(activity ,"position : " + position + parent.getItemAtPosition(position), Toast.LENGTH_SHORT).show();
-
-            }
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {}
-        });
 
         return rootView;
     }

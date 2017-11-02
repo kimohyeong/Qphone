@@ -5,10 +5,20 @@
     android:layout_margin="20dp"
     >
 
+    <ImageView
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:id="@+id/autoNew"
+        android:background="@drawable/ic_autorenew_black_24dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_alignParentRight="true"
+        />
     <ListView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/consumers">
+        android:id="@+id/consumers"
+        android:layout_below="@id/autoNew">
 
     </ListView>
 

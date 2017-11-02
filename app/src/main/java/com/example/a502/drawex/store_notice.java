@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
@@ -31,6 +32,7 @@ public class store_notice extends Fragment {
         rootView = (ViewGroup)inflater.inflate(R.layout.store_notice, container, false);
         activity = (AppCompatActivity)getActivity();
 
+        activity.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
 
         ListView listview ;
         store_notice_Adapter adapter;
